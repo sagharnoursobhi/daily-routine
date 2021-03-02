@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item__article.hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+
+    </div>
+</body>
+<script src="./assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script>
+    const data = [
+        {
+            'name': 'item1',
+            'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'image': 'https://picsum.photos/200/300'
+        },
+        {
+            'name': 'item2',
+            'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'image': 'https://picsum.photos/200/300'
+        },
+        {
+            'name': 'item3',
+            'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'image': 'https://picsum.photos/200/300'
+        },
+        {
+            'name': 'item4',
+            'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'image': 'https://picsum.photos/200/300'
+        }
+    ];
+    $(document).ready(() => {
+        let content = '';
+        data.forEach((article, index) => {
+            content += `<div class="item">
+            <button class="item__button" id="bnt_${index}">${article.name}</button>
+            <div class="item__article hide" id="article_${index}">
+                <img src="${article.image}">
+                <article>
+                    ${article.content}
+                </article>
+            </div>
+        </div>`;
+        })
+        $('.app').html(content);
+    });
+    //$('.item_button').on('click', () => {}); // for static elements
+    $(document).on('click','.item__button', (event) => { // for dynamic elements
+        $('.item__article').addClass('hide'); // baraye hide kardane dive ghabli
+        const target = event.target;
+        let id = $(target).prop('id');
+        id = id.split('_').pop();
+        $(`#article_${id}`).removeClass('hide');
+
+    });
+
+</script>
+</html>
